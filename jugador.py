@@ -11,8 +11,8 @@ class Jugador(pygame.sprite.Sprite):#Define la clase jugador que hereda todos lo
         self.image = pygame.image.load("imagenes-sonido/player.png").convert()
         self.image.set_colorkey(colores.BLACK)
         self.rect = self.image.get_rect()
-        self.rect.centerx = constantes.ancho_ventana / 2
-        self.rect.bottom = constantes.alto_ventana - 10
+        self.rect.centerx = constantes.ANCHO_VENTANA / 2
+        self.rect.bottom = constantes.ALTO_VENTANA - 10
         self.velocidad_x = 0
         self.escudo = 100
 
@@ -24,14 +24,14 @@ class Jugador(pygame.sprite.Sprite):#Define la clase jugador que hereda todos lo
         if keys[pygame.K_RIGHT]:
             self.velocidad_x = 5
         self.rect.x += self.velocidad_x
-        if self.rect.right > constantes.ancho_ventana:
-            self.rect.right = constantes.ancho_ventana
+        if self.rect.right > constantes.ANCHO_VENTANA:
+            self.rect.right = constantes.ANCHO_VENTANA
         if self.rect.left < 0:
             self.rect.left = 0
 
     def reiniciar(self): #Reinicia la posicion y los atributos del jugador.
-        self.rect.centerx = constantes.ancho_ventana / 2
-        self.rect.bottom = constantes.alto_ventana - 10
+        self.rect.centerx = constantes.ANCHO_VENTANA / 2
+        self.rect.bottom = constantes.ALTO_VENTANA - 10
         self.velocidad_x = 0
         self.escudo = 100
 

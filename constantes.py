@@ -1,2 +1,2 @@
-ancho_ventana = 1280
-alto_ventana = 720
+ANCHO_VENTANA = 1280
+ALTO_VENTANA = 720

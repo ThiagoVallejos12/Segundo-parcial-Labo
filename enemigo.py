@@ -7,13 +7,13 @@ class Enemigo(pygame.sprite.Sprite):
         self.image = pygame.image.load("imagenes-sonido/enemy_spaceship.png").convert()
         self.image.set_colorkey(colores.BLACK)
         self.rect = self.image.get_rect()
-        self.rect.x = random.randrange(constantes.ancho_ventana - self.rect.width)
+        self.rect.x = random.randrange(constantes.ANCHO_VENTANA - self.rect.width)
         self.rect.y = random.randrange(0, 200)
         self.speed_x = random.choice([-2, -1, 1, 2])
 
     def crear_disparo(self, total_sprites, lista_disparos_enemigos):
         self.rect.x += self.speed_x
-        if self.rect.right > constantes.ancho_ventana or self.rect.left < 0:
+        if self.rect.right > constantes.ANCHO_VENTANA or self.rect.left < 0:
             self.speed_x = -self.speed_x
         if random.randint(0, 100) < 1:
             self.rect.y += random.randint(1, 3)

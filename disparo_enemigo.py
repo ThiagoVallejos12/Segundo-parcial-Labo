@@ -12,5 +12,5 @@ class DisparoEnemigo(pygame.sprite.Sprite):
 
     def update(self):
         self.rect.y += self.speed_y
-        if self.rect.y > constantes.alto_ventana:
+        if self.rect.y > constantes.ALTO_VENTANA:
             self.kill()

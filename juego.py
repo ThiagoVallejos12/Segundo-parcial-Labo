@@ -17,7 +17,7 @@ class Juego:
         self.lista_disparos_enemigos = pygame.sprite.Group()
         self.personaje_lista = pygame.sprite.Group()
 
-        self.pantalla = pygame.display.set_mode((constantes.ancho_ventana, constantes.alto_ventana))
+        self.pantalla = pygame.display.set_mode((constantes.ANCHO_VENTANA, constantes.ALTO_VENTANA))
         pygame.display.set_caption("Alien Space")
         self.reloj = pygame.time.Clock()
 
@@ -50,7 +50,7 @@ class Juego:
         """
         self.objeto.reiniciar_juego() #Reinicia el juego para prepararlo para una nueva partida.
         self.fondo_gameover.set_alpha(0)
-        boton_salir = Boton(constantes.ancho_ventana/2-125, 550, 250, 50, 'VOLVER AL MENU')
+        boton_salir = Boton(constantes.ANCHO_VENTANA/2-125, 550, 250, 50, 'VOLVER AL MENU')
         run = True
         flag = True
         while run:
@@ -87,15 +87,15 @@ class Juego:
         pygame.font.init()
         fuente = pygame.font.Font(None, 36)
         texto = fuente.render("Ingrese su nombre:", True, (255, 255, 255))
-        texto_rect = texto.get_rect(center=(constantes.ancho_ventana / 2, 370))
+        texto_rect = texto.get_rect(center=(constantes.ANCHO_VENTANA / 2, 370))
         fondo_rect = self.fondo_menus.get_rect()
         titulo_rect = self.titulo.get_rect()
-        titulo_rect.center = (constantes.ancho_ventana // 2, constantes.alto_ventana // 2) #posiciona el título en el centro
+        titulo_rect.center = (constantes.ANCHO_VENTANA // 2, constantes.ALTO_VENTANA // 2) #posiciona el título en el centro
         titulo_rect.y = 50
         alpha = 0
 
         entrada = "" #esta cadena va a almacenar el nombre que se vaya a ingresar.
-        entrada_rect = pygame.Rect(constantes.ancho_ventana/2-100, 400, 200, 40)
+        entrada_rect = pygame.Rect(constantes.ANCHO_VENTANA/2-100, 400, 200, 40)
         activo = True
         while activo:
             fondo_rect.y += 1
@@ -151,7 +151,7 @@ class Juego:
                 cursor.execute("SELECT nombre, puntuacion FROM jugadores ORDER BY puntuacion DESC")
                 puntuaciones = cursor.fetchall()
                 print(puntuaciones)
-            boton = Boton(constantes.ancho_ventana-250, 200, 200, 50, 'VOLVER')
+            boton = Boton(constantes.ANCHO_VENTANA-250, 200, 200, 50, 'VOLVER')
             self.pantalla.blit(self.fondo_menus, (0, 0))
             fuente = pygame.font.Font(None, 30)
             pygame.draw.rect(self.pantalla, colores.GRAY15,(440, 110, 440, 500)) #Rectangulo donde se mostraran las puntuaciones.
@@ -262,8 +262,8 @@ class Juego:
             self.pantalla.blit(self.fondo_ingame, (0, fondo_rect.y - fondo_rect.height))
             self.pantalla.blit(self.fondo_ingame, (0, fondo_rect.y))
             self.total_sprites.draw(self.pantalla)
-            dibujar_texto(self.pantalla, str(puntuacion), 25, constantes.ancho_ventana // 2, 10)
-            dibujar_barra_escudo(self.pantalla, constantes.ancho_ventana - 155, constantes.alto_ventana - 25, self.jugador.escudo)
+            dibujar_texto(self.pantalla, str(puntuacion), 25, constantes.ANCHO_VENTANA // 2, 10)
+            dibujar_barra_escudo(self.pantalla, constantes.ANCHO_VENTANA - 155, constantes.ALTO_VENTANA - 25, self.jugador.escudo)
             pygame.display.flip()
 
     def main(self, juego):
@@ -274,7 +274,7 @@ class Juego:
         try:
             self.titulo = pygame.transform.scale(self.titulo, (720, 100))
             titulo_rect = self.titulo.get_rect()
-            titulo_rect.center = (constantes.ancho_ventana // 2, constantes.alto_ventana // 2)
+            titulo_rect.center = (constantes.ANCHO_VENTANA // 2, constantes.ALTO_VENTANA // 2)
             titulo_rect.y = 50
             fondo_rect = self.fondo_menus.get_rect()
             pygame.mixer.music.load("imagenes-sonido/music.ogg")
@@ -286,8 +286,8 @@ class Juego:
 
         self.nombre_jugador = juego.pedir_nombre() #Se ejecuta el menu de la funcion pedir_nombre.
         
-        boton_play = Boton(constantes.ancho_ventana/2-100, 300, 200, 50, 'Jugar')
-        boton_marcadores = Boton(constantes.ancho_ventana/2-100, 400, 200, 50, 'Scoreboard')
+        boton_play = Boton(constantes.ANCHO_VENTANA/2-100, 300, 200, 50, 'Jugar')
+        boton_marcadores = Boton(constantes.ANCHO_VENTANA/2-100, 400, 200, 50, 'Scoreboard')
 
         while True:
             milis = self.reloj.tick(60)
