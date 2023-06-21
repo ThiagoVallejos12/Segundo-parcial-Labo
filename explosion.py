@@ -1,4 +1,4 @@
-import pygame, colores
+import pygame, colores, constantes
 
 class Explosion(pygame.sprite.Sprite):
     def __init__(self, centro, imagenes_explosion):
@@ -32,7 +32,7 @@ class Explosion(pygame.sprite.Sprite):
         """
         imagenes_explosion = []
         for i in range(9):
-            image_dir = "imagenes-sonido/regularExplosion0{0}.png".format(i)
+            image_dir = constantes.EXPLOSIONES_IMG.format(i)
             image = pygame.image.load(image_dir)
             image.set_colorkey(colores.BLACK)
             image = pygame.transform.scale(image, (70,70))

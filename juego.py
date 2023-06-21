@@ -21,10 +21,10 @@ class Juego:
         pygame.display.set_caption("Alien Space")
         self.reloj = pygame.time.Clock()
 
-        self.titulo = pygame.image.load("imagenes-sonido/titulojuego.png")
-        self.fondo_gameover = pygame.image.load("imagenes-sonido/game_over1.jpg")
-        self.fondo_menus = pygame.image.load("imagenes-sonido/fondo2.png")
-        self.fondo_ingame = pygame.image.load("imagenes-sonido/fondo1.png")
+        self.titulo = pygame.image.load(constantes.TITULO_IMG)
+        self.fondo_gameover = pygame.image.load(constantes.FONDO_GAMEOVER_IMG)
+        self.fondo_menus = pygame.image.load(constantes.FONDO_MENUS_IMG)
+        self.fondo_ingame = pygame.image.load(constantes.FONDO_INGAME_IMG)
 
     def reiniciar_juego(self):
         """
@@ -146,7 +146,7 @@ class Juego:
         None: En caso de que ocurrar algun error durante la ejecucion.
         """
         try:
-            with sqlite3.connect("puntuaciones.db") as conexion:
+            with sqlite3.connect(constantes.NOMBRE_ARCHIVO_PUNTUACIONES) as conexion:
                 cursor = conexion.cursor()
                 cursor.execute("SELECT nombre, puntuacion FROM jugadores ORDER BY puntuacion DESC")
                 puntuaciones = cursor.fetchall()
@@ -193,9 +193,9 @@ class Juego:
         nombre_jugador: nombre del jugador.
         """
         try:
-            sonido_explosion = pygame.mixer.Sound("imagenes-sonido/assets_explosion.wav")
-            sonido_golpe = pygame.mixer.Sound("imagenes-sonido/uhsteve.wav")
-            sonido_laser = pygame.mixer.Sound("imagenes-sonido/laser5.ogg")
+            sonido_explosion = pygame.mixer.Sound(constantes.SONIDO_EXPLOSION)
+            sonido_golpe = pygame.mixer.Sound(constantes.SONIDO_GOLPE)
+            sonido_laser = pygame.mixer.Sound(constantes.SONIDO_LASER)
             sonido_golpe.set_volume(0.1), sonido_explosion.set_volume(0.1), sonido_laser.set_volume(0.3)
         except pygame.error as e:
             print("Error al cargar los archivos de imagen o sonido:", str(e))
@@ -255,7 +255,7 @@ class Juego:
                     Meteoro.crear_meteoro(1, self.total_sprites, self.lista_meteoros)
                 if self.jugador.escudo <= 0:
                     run = False
-                    guardar_puntuacion(self.nombre_jugador, int(puntuacion), "puntuaciones.db")
+                    guardar_puntuacion(self.nombre_jugador, int(puntuacion), constantes.NOMBRE_ARCHIVO_PUNTUACIONES)
                     self.objeto.game_over()
                     #reiniciar_juego(jugador)
             
@@ -277,7 +277,7 @@ class Juego:
             titulo_rect.center = (constantes.ANCHO_VENTANA // 2, constantes.ALTO_VENTANA // 2)
             titulo_rect.y = 50
             fondo_rect = self.fondo_menus.get_rect()
-            pygame.mixer.music.load("imagenes-sonido/music.ogg")
+            pygame.mixer.music.load(constantes.MUSICA_JUEGO)
             pygame.mixer.music.set_volume(0.1)
             pygame.mixer.music.play(loops=-1) #reproduce la musica en bucle.
         except pygame.error as e:
@@ -298,7 +298,7 @@ class Juego:
                     pygame.quit()
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     if boton_play.is_clicked(pygame.mouse.get_pos()):
-                        crear_tabla("imagenes-sonido/puntuaciones.db") #Crea una tabla en la base de datos para las puntuaciones si no existe
+                        crear_tabla(constantes.DIR_PUNTUACIONES) #Crea una tabla en la base de datos para las puntuaciones si no existe
                         juego.iniciar_juego() #Inicia el juego
                         print("Iniciar juego")
                     elif boton_marcadores.is_clicked(pygame.mouse.get_pos()):

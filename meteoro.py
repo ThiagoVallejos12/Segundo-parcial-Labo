@@ -4,8 +4,7 @@ from funciones import getSuperficies
 class Meteoro(pygame.sprite.Sprite):
     def __init__(self): #
         super().__init__()
-        direccion_imagenes = ["imagenes-sonido/meteorGrey_big1.png", "imagenes-sonido/meteorGrey_big2.png", "imagenes-sonido/meteorGrey_big3.png", "imagenes-sonido/meteorGrey_big4.png", "imagenes-sonido/meteorGrey_med1.png", "imagenes-sonido/meteorGrey_med2.png", 
-                                                  "imagenes-sonido/meteorGrey_small1.png", "imagenes-sonido/meteorGrey_small2.png", "imagenes-sonido/meteorGrey_tiny1.png", "imagenes-sonido/meteorGrey_tiny2.png"]
+        direccion_imagenes = constantes.METEOROS_IMG
         self.image = random.choice(getSuperficies(direccion_imagenes))
         self.image.set_colorkey(colores.BLACK)
         self.rect = self.image.get_rect()

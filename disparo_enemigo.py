@@ -3,7 +3,7 @@ import pygame, colores, constantes
 class DisparoEnemigo(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
-        self.image = pygame.image.load("imagenes-sonido/laser1.png")
+        self.image = pygame.image.load(constantes.DISPARO_ENEMIGO_IMG)
         self.image.set_colorkey(colores.BLACK)
         self.rect = self.image.get_rect()
         self.rect.centerx = x

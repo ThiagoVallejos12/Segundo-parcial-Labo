@@ -8,7 +8,7 @@ class Jugador(pygame.sprite.Sprite):#Define la clase jugador que hereda todos lo
     
     def __init__(self): #Constructor clase jugador
         super().__init__() #Se ejecuta el constructor de la clase Sprite(clase base) antes de hacer cualquier otra inicializacion de la clase jugador
-        self.image = pygame.image.load("imagenes-sonido/player.png").convert()
+        self.image = pygame.image.load(constantes.JUGADOR_IMG).convert()
         self.image.set_colorkey(colores.BLACK)
         self.rect = self.image.get_rect()
         self.rect.centerx = constantes.ANCHO_VENTANA / 2

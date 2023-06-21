@@ -4,7 +4,7 @@ from disparo_enemigo import DisparoEnemigo
 class Enemigo(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.image.load("imagenes-sonido/enemy_spaceship.png").convert()
+        self.image = pygame.image.load(constantes.NAVE_ENEMIGO_IMG).convert()
         self.image.set_colorkey(colores.BLACK)
         self.rect = self.image.get_rect()
         self.rect.x = random.randrange(constantes.ANCHO_VENTANA - self.rect.width)
